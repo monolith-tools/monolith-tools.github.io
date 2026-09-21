@@ -4,53 +4,74 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow,noarchive">
-<title>DQMJ S・SS配合ルート</title>
+<title>DQMJ S・SSコンプ＆配合</title>
 <style>
-:root{color-scheme:light dark;--bg:#f7f7f8;--card:#fff;--text:#202124;--muted:#6b7280;--line:#d9dde3;--accent:#3451d1;--accent2:#eef2ff;--owned:#137333;--ownedbg:#e6f4ea;--warn:#9a6700;--warnbg:#fff8c5}
-@media(prefers-color-scheme:dark){:root{--bg:#111315;--card:#191c1f;--text:#eceff3;--muted:#a7adb5;--line:#343a40;--accent:#9bb0ff;--accent2:#222a46;--owned:#81c995;--ownedbg:#183a25;--warn:#f2cc60;--warnbg:#403712}}
+:root{color-scheme:light dark;--bg:#f7f7f8;--card:#fff;--text:#202124;--muted:#6b7280;--line:#d9dde3;--accent:#3451d1;--accent2:#eef2ff;--owned:#137333;--ownedbg:#e6f4ea;--warn:#9a6700;--warnbg:#fff8c5;--danger:#b42318;--dangerbg:#fff0ee}
+@media(prefers-color-scheme:dark){:root{--bg:#111315;--card:#191c1f;--text:#eceff3;--muted:#a7adb5;--line:#343a40;--accent:#9bb0ff;--accent2:#222a46;--owned:#81c995;--ownedbg:#183a25;--warn:#f2cc60;--warnbg:#403712;--danger:#ffaaa1;--dangerbg:#40211f}}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif;line-height:1.55}
-.wrap{max-width:1120px;margin:auto;padding:20px}.top{display:flex;gap:12px;align-items:flex-end;justify-content:space-between;flex-wrap:wrap}.top h1{margin:0;font-size:clamp(22px,4vw,34px)}.sub{color:var(--muted);font-size:13px;margin-top:4px}
-.controls{display:grid;grid-template-columns:minmax(220px,1fr) auto auto;gap:10px;margin:18px 0}.controls input,.controls select,button{font:inherit}
-input,select{width:100%;min-height:42px;border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:10px;padding:8px 10px}
-button{min-height:38px;border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:10px;padding:7px 11px;cursor:pointer}button:hover{border-color:var(--accent)}
-.grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(280px,.85fr);gap:16px}.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;min-width:0}.panel h2{font-size:17px;margin:0 0 12px}.panel h3{font-size:14px;margin:18px 0 8px}
-.targetline{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px}.badge{display:inline-flex;align-items:center;border-radius:999px;padding:2px 8px;font-size:12px;background:var(--accent2);color:var(--accent)}.badge.owned{background:var(--ownedbg);color:var(--owned)}.badge.limited{background:var(--warnbg);color:var(--warn)}
-.tree,.tree ul{list-style:none;margin:0;padding-left:0}.tree ul{margin-left:16px;padding-left:13px;border-left:1px solid var(--line)}.node{margin:7px 0}.nodebox{border:1px solid var(--line);border-radius:11px;padding:9px 10px;background:var(--card)}.nodehead{display:flex;align-items:center;gap:7px;flex-wrap:wrap}.name{font-weight:700}.node-meta{font-size:12px;color:var(--muted);margin-top:5px}.parents{font-size:13px;margin-top:6px}.owned-toggle{margin-left:auto;display:flex;align-items:center;gap:5px;font-size:12px;color:var(--muted)}.owned-toggle input{width:16px;height:16px;min-height:0}.routepick{margin-top:7px;max-width:100%;font-size:12px;min-height:34px;padding:5px 7px}
-.summary-list{margin:0;padding-left:20px}.summary-list li{margin:4px 0}.empty{color:var(--muted);font-size:13px}.reverse a{display:inline-block;margin:3px 5px 3px 0;padding:4px 8px;border:1px solid var(--line);border-radius:999px;text-decoration:none;color:var(--text);font-size:12px}
-.owned-panel{margin-top:16px}.owned-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 10px;max-height:260px;overflow:auto;padding-right:5px}.owned-item{display:flex;align-items:center;gap:6px;font-size:13px}.owned-item input{width:16px;height:16px;min-height:0}
-.footer{font-size:12px;color:var(--muted);margin:18px 2px}.footer a{color:inherit}
-@media(max-width:760px){.controls{grid-template-columns:1fr 1fr}.controls .search{grid-column:1/-1}.grid{grid-template-columns:1fr}.owned-grid{grid-template-columns:1fr}.wrap{padding:14px}.panel{padding:13px}}
+.wrap{max-width:1160px;margin:auto;padding:20px}.top{display:flex;gap:12px;align-items:flex-end;justify-content:space-between;flex-wrap:wrap}.top h1{margin:0;font-size:clamp(22px,4vw,34px)}.sub{color:var(--muted);font-size:13px;margin-top:4px}.back{font-size:13px;color:var(--muted)}
+.tabs{display:flex;gap:8px;margin:18px 0}.tabbtn{border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:999px;padding:9px 16px;font-weight:700;cursor:pointer}.tabbtn.active{background:var(--accent);border-color:var(--accent);color:white}
+input,select,button{font:inherit}input,select{min-height:42px;border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:10px;padding:8px 10px}button{min-height:38px;border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:10px;padding:7px 11px;cursor:pointer}button:hover{border-color:var(--accent)}button:disabled{opacity:.45;cursor:default}
+.controls{display:grid;grid-template-columns:minmax(220px,1fr) auto auto;gap:10px;margin:0 0 16px}.controls input{width:100%}
+.grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(300px,.85fr);gap:16px}.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;min-width:0}.panel h2{font-size:17px;margin:0 0 12px}.panel h3{font-size:14px;margin:18px 0 8px}
+.targetline{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px}.badge{display:inline-flex;align-items:center;border-radius:999px;padding:2px 8px;font-size:12px;background:var(--accent2);color:var(--accent)}.badge.owned{background:var(--ownedbg);color:var(--owned)}.badge.limited{background:var(--warnbg);color:var(--warn)}.badge.short{background:var(--dangerbg);color:var(--danger)}
+.tree,.tree ul{list-style:none;margin:0;padding-left:0}.tree ul{margin-left:16px;padding-left:13px;border-left:1px solid var(--line)}.node{margin:7px 0}.nodebox{border:1px solid var(--line);border-radius:11px;padding:9px 10px;background:var(--card)}.nodehead{display:flex;align-items:center;gap:7px;flex-wrap:wrap}.name{font-weight:700}.node-meta{font-size:12px;color:var(--muted);margin-top:5px}.parents{font-size:13px;margin-top:6px}.count-inline{margin-left:auto;display:flex;align-items:center;gap:5px;font-size:12px;color:var(--muted)}.count-inline input{width:58px;min-height:32px;padding:3px 6px}.routepick{margin-top:7px;max-width:100%;width:100%;font-size:12px;min-height:34px;padding:5px 7px}
+.summary-list{margin:0;padding-left:20px}.summary-list li{margin:4px 0}.empty{color:var(--muted);font-size:13px}.reverse a{display:inline-block;margin:3px 5px 3px 0;padding:4px 8px;border:1px solid var(--line);border-radius:999px;text-decoration:none;color:var(--text);font-size:12px}.hint{border-radius:10px;background:var(--accent2);padding:9px 10px;font-size:12px;color:var(--muted);margin-bottom:12px}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:14px}.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:13px}.stat .label{font-size:12px;color:var(--muted)}.stat .value{font-size:24px;font-weight:800;margin-top:2px}.stat .small{font-size:12px;color:var(--muted)}.bar{height:7px;border-radius:999px;background:var(--line);overflow:hidden;margin-top:8px}.bar span{display:block;height:100%;background:var(--accent);border-radius:999px}
+.comp-toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:12px}.comp-toolbar input[type="search"]{flex:1;min-width:200px}.checklabel{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--muted)}.checklabel input{min-height:0;width:16px;height:16px}
+.rankhead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:18px 0 8px}.rankhead h2{margin:0}.monster-list{display:grid;gap:7px}.monster-row{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:10px;align-items:center;border:1px solid var(--line);background:var(--card);border-radius:11px;padding:9px 10px}.monster-main{min-width:0}.monster-name{font-weight:700}.monster-sub{font-size:12px;color:var(--muted);margin-top:2px}.countbox{display:flex;align-items:center;gap:5px}.countbox input{width:64px;min-height:36px;padding:4px 7px}.makebtn{white-space:nowrap}.done{color:var(--owned)}.missing{color:var(--danger)}
+.comp-note{font-size:12px;color:var(--muted);margin:8px 0 14px}.footer{font-size:12px;color:var(--muted);margin:18px 2px}.footer a{color:inherit}
+.hidden{display:none!important}
+@media(max-width:760px){.controls{grid-template-columns:1fr 1fr}.controls .search{grid-column:1/-1}.grid{grid-template-columns:1fr}.wrap{padding:14px}.panel{padding:13px}.stats{grid-template-columns:1fr}.monster-row{grid-template-columns:minmax(0,1fr) auto}.monster-row .makebtn{grid-column:1/-1;width:100%}}
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="top">
-    <div><h1>DQMJ S・SS配合ルート</h1><div class="sub">初代ニンテンドーDS版。所持状況はこのブラウザ内に保存されます。</div></div>
-    <a href="../" style="font-size:13px;color:var(--muted)">DQMJへ戻る</a>
+    <div><h1>DQMJ S・SSコンプ＆配合</h1><div class="sub">初代ニンテンドーDS版。目標はS・SS全37種を現在1体以上ずつ所持。</div></div>
+    <a class="back" href="../">DQMJへ戻る</a>
   </div>
 
-  <div class="controls">
-    <div class="search"><input id="search" placeholder="モンスター名で検索" autocomplete="off"></div>
-    <select id="rankFilter" aria-label="ランク絞り込み"><option value="all">S・SS</option><option value="S">Sのみ</option><option value="SS">SSのみ</option></select>
-    <select id="target" aria-label="作りたいモンスター"></select>
+  <div class="tabs" role="tablist">
+    <button class="tabbtn active" id="tabSearch" type="button">配合検索</button>
+    <button class="tabbtn" id="tabComp" type="button">S・SSコンプ</button>
   </div>
 
-  <div class="grid">
-    <section class="panel">
-      <div class="targetline" id="targetLine"></div>
-      <ul class="tree" id="tree"></ul>
-    </section>
+  <section id="searchView">
+    <div class="controls">
+      <div class="search"><input id="search" placeholder="モンスター名で検索" autocomplete="off"></div>
+      <select id="rankFilter" aria-label="ランク絞り込み"><option value="all">S・SS</option><option value="S">Sのみ</option><option value="SS">SSのみ</option></select>
+      <select id="target" aria-label="作りたいモンスター"></select>
+    </div>
 
-    <aside class="panel">
-      <h2>必要素材</h2>
-      <div id="summary"></div>
-      <h3>このモンスターを使う配合</h3>
-      <div class="reverse" id="reverse"></div>
-      <h3>所持管理</h3>
-      <div class="owned-grid" id="ownedGrid"></div>
-      <div style="margin-top:10px"><button id="clearOwned" type="button">所持チェックを全解除</button></div>
-    </aside>
-  </div>
+    <div class="grid">
+      <section class="panel">
+        <div class="targetline" id="targetLine"></div>
+        <div class="hint">所持数1体は「保存分」として残します。素材に使えるのは原則2体目以降です。</div>
+        <ul class="tree" id="tree"></ul>
+      </section>
+
+      <aside class="panel">
+        <h2>追加1体を作る場合の不足素材</h2>
+        <div id="summary"></div>
+        <h3>このモンスターを使う配合</h3>
+        <div class="reverse" id="reverse"></div>
+      </aside>
+    </div>
+  </section>
+
+  <section id="compView" class="hidden">
+    <div class="stats" id="stats"></div>
+    <div class="panel">
+      <div class="comp-toolbar">
+        <input type="search" id="compSearch" placeholder="コンプ表を検索">
+        <label class="checklabel"><input type="checkbox" id="missingOnly">未所持のみ</label>
+        <button type="button" id="clearCounts">所持数を全て0にする</button>
+      </div>
+      <div class="comp-note">所持数はブラウザ内に自動保存されます。1体以上ならコンプ済み、0体なら未所持です。</div>
+      <div id="compLists"></div>
+    </div>
+  </section>
 
   <div class="footer">
     データ確認元：
@@ -85,7 +106,6 @@ const M = {
 "グランスライム":{rank:"S",r:[["キングスライム","メタルキング","バブルキング","メタルカイザー"]]},
 "カンダタ":{rank:"S",limited:"すれちがい通信で入手",r:[]},
 "キャプテン・クロウ":{rank:"S",limited:"海賊イベントで入手",r:[]},
-
 "ゾーマ":{rank:"SS",r:[["シドー","ワイトキング"],["シドー","デュラハーン"],["シドー","しにがみきぞく"]]},
 "あんこくのまじん":{rank:"SS",r:[["ゴールドマン","バベルボブル"]]},
 "デスピサロ":{rank:"SS",r:[["あんこくのまじん","ピサロナイト"]]},
@@ -105,44 +125,51 @@ const M = {
 
 const highNames = Object.keys(M);
 const $ = s => document.querySelector(s);
-let owned = new Set(JSON.parse(localStorage.getItem("dqmj-owned-v1") || "[]"));
+const oldOwned = JSON.parse(localStorage.getItem("dqmj-owned-v1") || "[]");
+let counts = JSON.parse(localStorage.getItem("dqmj-owned-counts-v2") || "null");
+if(!counts){
+  counts={};
+  highNames.forEach(n=>counts[n]=oldOwned.includes(n)?1:0);
+  localStorage.setItem("dqmj-owned-counts-v2",JSON.stringify(counts));
+}
+highNames.forEach(n=>{ if(counts[n]===undefined) counts[n]=0; });
 let choices = {};
 let current = "りゅうじんおう";
 
-function saveOwned(){ localStorage.setItem("dqmj-owned-v1", JSON.stringify([...owned])); }
-function esc(s){ return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c])); }
-function rankBadge(n){ return M[n] ? '<span class="badge">'+M[n].rank+'</span>' : ''; }
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));}
+function count(n){return Math.max(0,Math.floor(Number(counts[n])||0));}
+function setCount(n,v){counts[n]=Math.max(0,Math.floor(Number(v)||0));localStorage.setItem("dqmj-owned-counts-v2",JSON.stringify(counts));renderAll();}
+function rankBadge(n){return M[n]?'<span class="badge">'+M[n].rank+'</span>':"";}
+function surplus(n){return M[n]?Math.max(0,count(n)-1):0;}
+function nodeKey(path){return path.join(">");}
+function choiceFor(name,path){const m=M[name];if(!m||!m.r.length)return 0;const k=nodeKey(path);return Math.min(choices[k]||0,m.r.length-1);}
 
 function filteredNames(){
-  const q = $("#search").value.trim();
-  const rf = $("#rankFilter").value;
-  return highNames.filter(n => (rf==="all" || M[n].rank===rf) && (!q || n.includes(q)));
+  const q=$("#search").value.trim(),rf=$("#rankFilter").value;
+  return highNames.filter(n=>(rf==="all"||M[n].rank===rf)&&(!q||n.includes(q)));
 }
 function refreshSelect(){
-  const names = filteredNames();
-  const t = $("#target");
-  const keep = names.includes(current) ? current : (names[0] || "");
-  t.innerHTML = names.map(n=>'<option value="'+esc(n)+'">'+esc(n)+'</option>').join("");
-  if(keep){ current=keep; t.value=keep; }
-  render();
+  const names=filteredNames(),t=$("#target");
+  const keep=names.includes(current)?current:(names[0]||"");
+  t.innerHTML=names.map(n=>'<option value="'+esc(n)+'">'+esc(n)+'</option>').join("");
+  if(keep){current=keep;t.value=keep;}
+  renderSearch();
 }
-function nodeKey(path){ return path.join(">"); }
-function choiceFor(name,path){
-  const m=M[name]; if(!m || !m.r.length) return 0;
-  const k=nodeKey(path); return Math.min(choices[k]||0,m.r.length-1);
-}
-function renderNode(name,path,seen){
-  const m=M[name], isOwned=owned.has(name), cycle=seen.has(name);
+
+function renderNode(name,path,seen,isRoot){
+  const m=M[name],c=count(name),sp=surplus(name),cycle=seen.has(name);
   let html='<li class="node"><div class="nodebox"><div class="nodehead"><span class="name">'+esc(name)+'</span>'+rankBadge(name);
-  if(m?.limited) html+='<span class="badge limited">限定</span>';
-  if(isOwned) html+='<span class="badge owned">所持</span>';
-  html+='<label class="owned-toggle"><input type="checkbox" data-owned="'+esc(name)+'" '+(isOwned?'checked':'')+'>所持</label></div>';
-  if(m?.limited) html+='<div class="node-meta">'+esc(m.limited)+'</div>';
-  if(!m){ html+='<div class="node-meta">末端素材</div></div></li>'; return html; }
-  if(isOwned){ html+='<div class="node-meta">所持済みのため、ここから先は展開しません。</div></div></li>'; return html; }
-  if(cycle){ html+='<div class="node-meta">循環参照を停止しました。</div></div></li>'; return html; }
-  if(!m.r.length){ html+='<div class="node-meta">配合ルートなし</div></div></li>'; return html; }
-  const idx=choiceFor(name,path), parents=m.r[idx], k=nodeKey(path);
+  if(m?.limited)html+='<span class="badge limited">限定</span>';
+  if(m&&c>0)html+='<span class="badge owned">所持 '+c+'</span>';
+  if(m)html+='<label class="count-inline">所持数 <input type="number" min="0" step="1" value="'+c+'" data-count="'+esc(name)+'"></label>';
+  html+='</div>';
+  if(m?.limited)html+='<div class="node-meta">'+esc(m.limited)+'</div>';
+  if(!m){html+='<div class="node-meta">末端素材</div></div></li>';return html;}
+  if(!isRoot&&sp>0){html+='<div class="node-meta">余剰 '+sp+'体あり。1体を保存したまま素材に使えます。</div></div></li>';return html;}
+  if(!isRoot&&c===1)html+='<div class="node-meta"><span class="missing">保存分1体のみ。素材に使うなら追加作成が必要です。</span></div>';
+  if(cycle){html+='<div class="node-meta">循環参照を停止しました。</div></div></li>';return html;}
+  if(!m.r.length){html+='<div class="node-meta">配合ルートなし</div></div></li>';return html;}
+  const idx=choiceFor(name,path),parents=m.r[idx],k=nodeKey(path);
   html+='<div class="parents">'+(parents.length===4?'4体配合：':'配合：')+parents.map(esc).join(' × ')+'</div>';
   if(m.r.length>1){
     html+='<select class="routepick" data-choice="'+esc(k)+'">';
@@ -150,58 +177,114 @@ function renderNode(name,path,seen){
     html+='</select>';
   }
   html+='</div>';
-  const nextSeen=new Set(seen); nextSeen.add(name);
-  html+='<ul>'+parents.map((p,i)=>renderNode(p,path.concat(i+":"+p),nextSeen)).join("")+'</ul></li>';
+  const ns=new Set(seen);ns.add(name);
+  html+='<ul>'+parents.map((p,i)=>renderNode(p,path.concat(i+":"+p),ns,false)).join("")+'</ul></li>';
   return html;
 }
-function aggregate(name,path,seen,out){
-  if(owned.has(name)) return;
-  const m=M[name];
-  if(!m || !m.r.length || m.limited){
-    out[name]=(out[name]||0)+1; return;
+
+function planAdditional(root){
+  const pool={};highNames.forEach(n=>pool[n]=surplus(n));
+  const missing={};
+  function need(name,qty,path,seen,isRoot){
+    let q=qty;
+    if(!isRoot&&M[name]){
+      const use=Math.min(pool[name]||0,q);
+      pool[name]-=use;q-=use;
+    }
+    if(q<=0)return;
+    const m=M[name];
+    if(!m||!m.r.length||seen.has(name)){
+      missing[name]=(missing[name]||0)+q;return;
+    }
+    const idx=choiceFor(name,path),parents=m.r[idx],ns=new Set(seen);ns.add(name);
+    const mult={};parents.forEach(p=>mult[p]=(mult[p]||0)+1);
+    Object.entries(mult).forEach(([p,k])=>need(p,q*k,path.concat(p),ns,false));
   }
-  if(seen.has(name)){ out[name]=(out[name]||0)+1; return; }
-  const idx=choiceFor(name,path), parents=m.r[idx], ns=new Set(seen); ns.add(name);
-  parents.forEach((p,i)=>aggregate(p,path.concat(i+":"+p),ns,out));
+  need(root,1,[root],new Set(),true);
+  return missing;
 }
+
 function reverse(name){
   const hits=[];
-  for(const [child,m] of Object.entries(M)){
-    m.r.forEach(r=>{ if(r.includes(name) && !hits.includes(child)) hits.push(child); });
-  }
+  for(const [child,m] of Object.entries(M))m.r.forEach(r=>{if(r.includes(name)&&!hits.includes(child))hits.push(child);});
   return hits;
 }
-function renderOwned(){
-  $("#ownedGrid").innerHTML=highNames.map(n=>'<label class="owned-item"><input type="checkbox" data-owned="'+esc(n)+'" '+(owned.has(n)?'checked':'')+'><span>'+esc(n)+'</span>'+rankBadge(n)+'</label>').join("");
-}
-function render(){
-  if(!current){ $("#tree").innerHTML=''; $("#targetLine").innerHTML='<span class="empty">該当なし</span>'; return; }
-  const m=M[current];
-  $("#targetLine").innerHTML='<strong style="font-size:18px">'+esc(current)+'</strong>'+rankBadge(current)+(m.limited?'<span class="badge limited">限定・配合不可</span>':'<span class="badge">配合可</span>');
-  $("#tree").innerHTML=renderNode(current,[current],new Set());
-  const out={}; aggregate(current,[current],new Set(),out);
+
+function renderSearch(){
+  if(!current){$("#tree").innerHTML="";$("#targetLine").innerHTML='<span class="empty">該当なし</span>';return;}
+  const m=M[current],c=count(current);
+  $("#targetLine").innerHTML='<strong style="font-size:18px">'+esc(current)+'</strong>'+rankBadge(current)+(m.limited?'<span class="badge limited">限定・配合不可</span>':'<span class="badge">配合可</span>')+(c>0?'<span class="badge owned">現在 '+c+'体</span>':'<span class="badge short">未所持</span>');
+  $("#tree").innerHTML=renderNode(current,[current],new Set(),true);
+  const out=planAdditional(current);
   const items=Object.entries(out).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0],"ja"));
-  $("#summary").innerHTML=items.length?'<ul class="summary-list">'+items.map(([n,c])=>'<li>'+esc(n)+(c>1?' × '+c:'')+(M[n]?.limited?' <span class="badge limited">限定</span>':'')+'</li>').join("")+'</ul>':'<div class="empty">必要素材はありません。対象を所持済みとして登録しています。</div>';
+  $("#summary").innerHTML=items.length?'<ul class="summary-list">'+items.map(([n,cnt])=>'<li>'+esc(n)+(cnt>1?' × '+cnt:'')+(M[n]?.limited?' <span class="badge limited">限定入手が必要</span>':'')+'</li>').join("")+'</ul>':'<div class="empty">現在の余剰分だけで追加1体を作れます。</div>';
   const rev=reverse(current);
   $("#reverse").innerHTML=rev.length?rev.map(n=>'<a href="#" data-jump="'+esc(n)+'">'+esc(n)+' '+M[n].rank+'</a>').join(""):'<div class="empty">S・SS配合表内では使用先なし</div>';
-  renderOwned();
 }
+
+function progress(rank){
+  const arr=rank?highNames.filter(n=>M[n].rank===rank):highNames;
+  const done=arr.filter(n=>count(n)>0).length;
+  return {done,total:arr.length,pct:arr.length?Math.round(done/arr.length*100):0};
+}
+function statCard(label,p){
+  return '<div class="stat"><div class="label">'+label+'</div><div class="value">'+p.done+' / '+p.total+'</div><div class="small">'+p.pct+'%</div><div class="bar"><span style="width:'+p.pct+'%"></span></div></div>';
+}
+function renderComp(){
+  const all=progress(),s=progress("S"),ss=progress("SS");
+  $("#stats").innerHTML=statCard("総合",all)+statCard("Sランク",s)+statCard("SSランク",ss);
+  const q=$("#compSearch").value.trim(),missingOnly=$("#missingOnly").checked;
+  let html="";
+  ["S","SS"].forEach(rank=>{
+    const names=highNames.filter(n=>M[n].rank===rank&&(!q||n.includes(q))&&(!missingOnly||count(n)===0));
+    const p=progress(rank);
+    html+='<div class="rankhead"><h2>'+rank+'ランク</h2><span class="badge">'+p.done+' / '+p.total+'</span></div>';
+    if(!names.length){html+='<div class="empty">該当なし</div>';return;}
+    html+='<div class="monster-list">';
+    names.forEach(n=>{
+      const m=M[n],c=count(n),done=c>0;
+      html+='<div class="monster-row"><div class="monster-main"><div class="monster-name">'+esc(n)+' '+rankBadge(n)+(m.limited?' <span class="badge limited">限定</span>':'')+'</div><div class="monster-sub '+(done?'done':'missing')+'">'+(done?'コンプ済み。現在 '+c+'体':'未所持。目標まであと1体')+'</div></div><div class="countbox"><span>所持</span><input type="number" min="0" step="1" value="'+c+'" data-count="'+esc(n)+'"></div>';
+      if(m.r.length)html+='<button class="makebtn" type="button" data-make="'+esc(n)+'">'+(done?'配合を見る':'作り方を見る')+'</button>';
+      else html+='<button class="makebtn" type="button" disabled>配合不可</button>';
+      html+='</div>';
+    });
+    html+='</div>';
+  });
+  $("#compLists").innerHTML=html;
+}
+function renderAll(){renderSearch();renderComp();}
+
+function showTab(which){
+  const search=which==="search";
+  $("#searchView").classList.toggle("hidden",!search);
+  $("#compView").classList.toggle("hidden",search);
+  $("#tabSearch").classList.toggle("active",search);
+  $("#tabComp").classList.toggle("active",!search);
+  if(!search)renderComp();
+}
+function jumpToSearch(n){
+  current=n;$("#search").value="";$("#rankFilter").value="all";refreshSelect();$("#target").value=n;showTab("search");
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
 document.addEventListener("change",e=>{
-  if(e.target.matches("[data-owned]")){
-    const n=e.target.dataset.owned;
-    e.target.checked?owned.add(n):owned.delete(n); saveOwned(); render();
-  } else if(e.target.matches("[data-choice]")){
-    choices[e.target.dataset.choice]=Number(e.target.value); render();
-  }
+  if(e.target.matches("[data-count]"))setCount(e.target.dataset.count,e.target.value);
+  else if(e.target.matches("[data-choice]")){choices[e.target.dataset.choice]=Number(e.target.value);renderSearch();}
 });
 document.addEventListener("click",e=>{
-  const a=e.target.closest("[data-jump]"); if(a){e.preventDefault(); current=a.dataset.jump; $("#search").value=""; $("#rankFilter").value="all"; refreshSelect(); $("#target").value=current;}
+  const jump=e.target.closest("[data-jump]");if(jump){e.preventDefault();jumpToSearch(jump.dataset.jump);return;}
+  const make=e.target.closest("[data-make]");if(make){jumpToSearch(make.dataset.make);return;}
 });
-$("#target").addEventListener("change",e=>{current=e.target.value;render();});
+$("#target").addEventListener("change",e=>{current=e.target.value;renderSearch();});
 $("#search").addEventListener("input",refreshSelect);
 $("#rankFilter").addEventListener("change",refreshSelect);
-$("#clearOwned").addEventListener("click",()=>{owned.clear();saveOwned();render();});
+$("#compSearch").addEventListener("input",renderComp);
+$("#missingOnly").addEventListener("change",renderComp);
+$("#clearCounts").addEventListener("click",()=>{if(confirm("S・SSの所持数をすべて0にしますか？")){highNames.forEach(n=>counts[n]=0);localStorage.setItem("dqmj-owned-counts-v2",JSON.stringify(counts));renderAll();}});
+$("#tabSearch").addEventListener("click",()=>showTab("search"));
+$("#tabComp").addEventListener("click",()=>showTab("comp"));
 refreshSelect();
+renderComp();
 </script>
 </body>
 </html>
