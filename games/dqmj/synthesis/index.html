@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>DQMJ S・SS配合ルート</title>
+<style>
+:root{color-scheme:light dark;--bg:#f7f7f8;--card:#fff;--text:#202124;--muted:#6b7280;--line:#d9dde3;--accent:#3451d1;--accent2:#eef2ff;--owned:#137333;--ownedbg:#e6f4ea;--warn:#9a6700;--warnbg:#fff8c5}
+@media(prefers-color-scheme:dark){:root{--bg:#111315;--card:#191c1f;--text:#eceff3;--muted:#a7adb5;--line:#343a40;--accent:#9bb0ff;--accent2:#222a46;--owned:#81c995;--ownedbg:#183a25;--warn:#f2cc60;--warnbg:#403712}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif;line-height:1.55}
+.wrap{max-width:1120px;margin:auto;padding:20px}.top{display:flex;gap:12px;align-items:flex-end;justify-content:space-between;flex-wrap:wrap}.top h1{margin:0;font-size:clamp(22px,4vw,34px)}.sub{color:var(--muted);font-size:13px;margin-top:4px}
+.controls{display:grid;grid-template-columns:minmax(220px,1fr) auto auto;gap:10px;margin:18px 0}.controls input,.controls select,button{font:inherit}
+input,select{width:100%;min-height:42px;border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:10px;padding:8px 10px}
+button{min-height:38px;border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:10px;padding:7px 11px;cursor:pointer}button:hover{border-color:var(--accent)}
+.grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(280px,.85fr);gap:16px}.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;min-width:0}.panel h2{font-size:17px;margin:0 0 12px}.panel h3{font-size:14px;margin:18px 0 8px}
+.targetline{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px}.badge{display:inline-flex;align-items:center;border-radius:999px;padding:2px 8px;font-size:12px;background:var(--accent2);color:var(--accent)}.badge.owned{background:var(--ownedbg);color:var(--owned)}.badge.limited{background:var(--warnbg);color:var(--warn)}
+.tree,.tree ul{list-style:none;margin:0;padding-left:0}.tree ul{margin-left:16px;padding-left:13px;border-left:1px solid var(--line)}.node{margin:7px 0}.nodebox{border:1px solid var(--line);border-radius:11px;padding:9px 10px;background:var(--card)}.nodehead{display:flex;align-items:center;gap:7px;flex-wrap:wrap}.name{font-weight:700}.node-meta{font-size:12px;color:var(--muted);margin-top:5px}.parents{font-size:13px;margin-top:6px}.owned-toggle{margin-left:auto;display:flex;align-items:center;gap:5px;font-size:12px;color:var(--muted)}.owned-toggle input{width:16px;height:16px;min-height:0}.routepick{margin-top:7px;max-width:100%;font-size:12px;min-height:34px;padding:5px 7px}
+.summary-list{margin:0;padding-left:20px}.summary-list li{margin:4px 0}.empty{color:var(--muted);font-size:13px}.reverse a{display:inline-block;margin:3px 5px 3px 0;padding:4px 8px;border:1px solid var(--line);border-radius:999px;text-decoration:none;color:var(--text);font-size:12px}
+.owned-panel{margin-top:16px}.owned-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 10px;max-height:260px;overflow:auto;padding-right:5px}.owned-item{display:flex;align-items:center;gap:6px;font-size:13px}.owned-item input{width:16px;height:16px;min-height:0}
+.footer{font-size:12px;color:var(--muted);margin:18px 2px}.footer a{color:inherit}
+@media(max-width:760px){.controls{grid-template-columns:1fr 1fr}.controls .search{grid-column:1/-1}.grid{grid-template-columns:1fr}.owned-grid{grid-template-columns:1fr}.wrap{padding:14px}.panel{padding:13px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div><h1>DQMJ S・SS配合ルート</h1><div class="sub">初代ニンテンドーDS版。所持状況はこのブラウザ内に保存されます。</div></div>
+    <a href="../" style="font-size:13px;color:var(--muted)">DQMJへ戻る</a>
+  </div>
+
+  <div class="controls">
+    <div class="search"><input id="search" placeholder="モンスター名で検索" autocomplete="off"></div>
+    <select id="rankFilter" aria-label="ランク絞り込み"><option value="all">S・SS</option><option value="S">Sのみ</option><option value="SS">SSのみ</option></select>
+    <select id="target" aria-label="作りたいモンスター"></select>
+  </div>
+
+  <div class="grid">
+    <section class="panel">
+      <div class="targetline" id="targetLine"></div>
+      <ul class="tree" id="tree"></ul>
+    </section>
+
+    <aside class="panel">
+      <h2>必要素材</h2>
+      <div id="summary"></div>
+      <h3>このモンスターを使う配合</h3>
+      <div class="reverse" id="reverse"></div>
+      <h3>所持管理</h3>
+      <div class="owned-grid" id="ownedGrid"></div>
+      <div style="margin-top:10px"><button id="clearOwned" type="button">所持チェックを全解除</button></div>
+    </aside>
+  </div>
+
+  <div class="footer">
+    データ確認元：
+    <a href="https://dqwiki.com/dqmj/402.html" target="_blank" rel="noopener">Sランク配合法</a>、
+    <a href="https://dqwiki.com/dqmj/403.html" target="_blank" rel="noopener">SSランク配合法</a>、
+    <a href="https://dqwiki.com/dqmj/323.html" target="_blank" rel="noopener">4体配合</a>。
+    非公式の個人用ツールです。
+  </div>
+</div>
+
+<script>
+const M = {
+"メタルキング":{rank:"S",r:[["はぐれメタル","はぐれメタル","はぐれメタル","はぐれメタル"]]},
+"ブラックドラゴン":{rank:"S",r:[["グレイトドラゴン","しにがみきぞく"]]},
+"ヘラクレイザー":{rank:"S",r:[["かぶとこぞう","メタルキング"]]},
+"アトラス":{rank:"S",r:[["ギガンテス","アンクルホーン"],["ギガンテス","ガルーダ"],["ギガンテス","ボストロール"]]},
+"トラップボックス":{rank:"S",r:[["ミミック","ミミック","ひとくいばこ","メタルカイザー"]]},
+"デュラハーン":{rank:"S",r:[["しにがみきぞく","ぼうれいけんし"],["しにがみきぞく","なげきのぼうれい"]]},
+"ギガントドラゴン":{rank:"S",r:[["ギガントヒルズ","アトラス"],["ギガントヒルズ","バズズ"]]},
+"だいおうイカ":{rank:"S",r:[["プチアーノン","おにこんぼう"],["エビラ","グラコス"]]},
+"ドン・モグーラ":{rank:"S",r:[["いたずらもぐら","いたずらもぐら","おにこんぼう","おにこんぼう"]]},
+"キラーマシン":{rank:"S",r:[["メタルハンター","メカバーン"],["メタルハンター","ソードファントム"]]},
+"おにこんぼう":{rank:"S",r:[["ボストロール","リザードファッツ"],["ボストロール","ギガントヒルズ"],["ボストロール","バズズ"]]},
+"ワイトキング":{rank:"S",r:[["なげきのぼうれい","キングスライム"],["なげきのぼうれい","バブルキング"]]},
+"スライムマデュラ":{rank:"S",r:[["もりもりベス","もりもりベス","スライムベホマズン","メタルキング"]]},
+"はくりゅうおう":{rank:"S",r:[["メカバーン","ギガントドラゴン"]]},
+"オセアーノン":{rank:"S",r:[["プチアーノン","プチアーノン","だいおうイカ","だいおうイカ"]]},
+"ミルドラース":{rank:"S",r:[["シドー","ギガントドラゴン"]]},
+"バベルボブル":{rank:"S",r:[["バル","ブル","ベル","ボル"]]},
+"シドー":{rank:"S",r:[["まおうのつかい","うごくせきぞう"],["まおうのつかい","バッファロン"]]},
+"ドルマゲス":{rank:"S",r:[["はくりゅうおう","デスピサロ"],["はくりゅうおう","エスターク"]]},
+"グランスライム":{rank:"S",r:[["キングスライム","メタルキング","バブルキング","メタルカイザー"]]},
+"カンダタ":{rank:"S",limited:"すれちがい通信で入手",r:[]},
+"キャプテン・クロウ":{rank:"S",limited:"海賊イベントで入手",r:[]},
+
+"ゾーマ":{rank:"SS",r:[["シドー","ワイトキング"],["シドー","デュラハーン"],["シドー","しにがみきぞく"]]},
+"あんこくのまじん":{rank:"SS",r:[["ゴールドマン","バベルボブル"]]},
+"デスピサロ":{rank:"SS",r:[["あんこくのまじん","ピサロナイト"]]},
+"エスターク":{rank:"SS",r:[["デスピサロ","ヘラクレイザー"]]},
+"デスタムーア":{rank:"SS",r:[["エスターク","ミルドラース"]]},
+"オルゴ・デミーラ":{rank:"SS",r:[["デスタムーア","はくりゅうおう"]]},
+"ラプソーン（小）":{rank:"SS",r:[["ドルマゲス","ミルドラース"]]},
+"ラプソーン（大）":{rank:"SS",r:[["ラプソーン（小）","ゾーマ"],["ラプソーン（小）","オルゴ・デミーラ"]]},
+"ゴールデンスライム":{rank:"SS",r:[["グランスライム","グランスライム","ゴールドマン","ゴールドマン"]]},
+"ガルマッゾ":{rank:"SS",r:[["ラプソーン（大）","オルゴ・デミーラ","キャプテン・クロウ","スライムマデュラ"]]},
+"りゅうおう":{rank:"SS",r:[["はくりゅうおう","はくりゅうおう","ゴールデンスライム","キャプテン・クロウ"]]},
+"りゅうじんおう":{rank:"SS",r:[["ラプソーン（大）","りゅうおう"]]},
+"レオパルド":{rank:"SS",limited:"DSステーション配布。配合不可",r:[]},
+"トロデ":{rank:"SS",limited:"DSステーション配布。配合不可",r:[]},
+"レティス":{rank:"SS",limited:"DSステーション配布。配合不可",r:[]}
+};
+
+const highNames = Object.keys(M);
+const $ = s => document.querySelector(s);
+let owned = new Set(JSON.parse(localStorage.getItem("dqmj-owned-v1") || "[]"));
+let choices = {};
+let current = "りゅうじんおう";
+
+function saveOwned(){ localStorage.setItem("dqmj-owned-v1", JSON.stringify([...owned])); }
+function esc(s){ return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c])); }
+function rankBadge(n){ return M[n] ? '<span class="badge">'+M[n].rank+'</span>' : ''; }
+
+function filteredNames(){
+  const q = $("#search").value.trim();
+  const rf = $("#rankFilter").value;
+  return highNames.filter(n => (rf==="all" || M[n].rank===rf) && (!q || n.includes(q)));
+}
+function refreshSelect(){
+  const names = filteredNames();
+  const t = $("#target");
+  const keep = names.includes(current) ? current : (names[0] || "");
+  t.innerHTML = names.map(n=>'<option value="'+esc(n)+'">'+esc(n)+'</option>').join("");
+  if(keep){ current=keep; t.value=keep; }
+  render();
+}
+function nodeKey(path){ return path.join(">"); }
+function choiceFor(name,path){
+  const m=M[name]; if(!m || !m.r.length) return 0;
+  const k=nodeKey(path); return Math.min(choices[k]||0,m.r.length-1);
+}
+function renderNode(name,path,seen){
+  const m=M[name], isOwned=owned.has(name), cycle=seen.has(name);
+  let html='<li class="node"><div class="nodebox"><div class="nodehead"><span class="name">'+esc(name)+'</span>'+rankBadge(name);
+  if(m?.limited) html+='<span class="badge limited">限定</span>';
+  if(isOwned) html+='<span class="badge owned">所持</span>';
+  html+='<label class="owned-toggle"><input type="checkbox" data-owned="'+esc(name)+'" '+(isOwned?'checked':'')+'>所持</label></div>';
+  if(m?.limited) html+='<div class="node-meta">'+esc(m.limited)+'</div>';
+  if(!m){ html+='<div class="node-meta">末端素材</div></div></li>'; return html; }
+  if(isOwned){ html+='<div class="node-meta">所持済みのため、ここから先は展開しません。</div></div></li>'; return html; }
+  if(cycle){ html+='<div class="node-meta">循環参照を停止しました。</div></div></li>'; return html; }
+  if(!m.r.length){ html+='<div class="node-meta">配合ルートなし</div></div></li>'; return html; }
+  const idx=choiceFor(name,path), parents=m.r[idx], k=nodeKey(path);
+  html+='<div class="parents">'+(parents.length===4?'4体配合：':'配合：')+parents.map(esc).join(' × ')+'</div>';
+  if(m.r.length>1){
+    html+='<select class="routepick" data-choice="'+esc(k)+'">';
+    m.r.forEach((r,i)=>{html+='<option value="'+i+'" '+(i===idx?'selected':'')+'>候補 '+(i+1)+'：'+r.map(esc).join(' × ')+'</option>';});
+    html+='</select>';
+  }
+  html+='</div>';
+  const nextSeen=new Set(seen); nextSeen.add(name);
+  html+='<ul>'+parents.map((p,i)=>renderNode(p,path.concat(i+":"+p),nextSeen)).join("")+'</ul></li>';
+  return html;
+}
+function aggregate(name,path,seen,out){
+  if(owned.has(name)) return;
+  const m=M[name];
+  if(!m || !m.r.length || m.limited){
+    out[name]=(out[name]||0)+1; return;
+  }
+  if(seen.has(name)){ out[name]=(out[name]||0)+1; return; }
+  const idx=choiceFor(name,path), parents=m.r[idx], ns=new Set(seen); ns.add(name);
+  parents.forEach((p,i)=>aggregate(p,path.concat(i+":"+p),ns,out));
+}
+function reverse(name){
+  const hits=[];
+  for(const [child,m] of Object.entries(M)){
+    m.r.forEach(r=>{ if(r.includes(name) && !hits.includes(child)) hits.push(child); });
+  }
+  return hits;
+}
+function renderOwned(){
+  $("#ownedGrid").innerHTML=highNames.map(n=>'<label class="owned-item"><input type="checkbox" data-owned="'+esc(n)+'" '+(owned.has(n)?'checked':'')+'><span>'+esc(n)+'</span>'+rankBadge(n)+'</label>').join("");
+}
+function render(){
+  if(!current){ $("#tree").innerHTML=''; $("#targetLine").innerHTML='<span class="empty">該当なし</span>'; return; }
+  const m=M[current];
+  $("#targetLine").innerHTML='<strong style="font-size:18px">'+esc(current)+'</strong>'+rankBadge(current)+(m.limited?'<span class="badge limited">限定・配合不可</span>':'<span class="badge">配合可</span>');
+  $("#tree").innerHTML=renderNode(current,[current],new Set());
+  const out={}; aggregate(current,[current],new Set(),out);
+  const items=Object.entries(out).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0],"ja"));
+  $("#summary").innerHTML=items.length?'<ul class="summary-list">'+items.map(([n,c])=>'<li>'+esc(n)+(c>1?' × '+c:'')+(M[n]?.limited?' <span class="badge limited">限定</span>':'')+'</li>').join("")+'</ul>':'<div class="empty">必要素材はありません。対象を所持済みとして登録しています。</div>';
+  const rev=reverse(current);
+  $("#reverse").innerHTML=rev.length?rev.map(n=>'<a href="#" data-jump="'+esc(n)+'">'+esc(n)+' '+M[n].rank+'</a>').join(""):'<div class="empty">S・SS配合表内では使用先なし</div>';
+  renderOwned();
+}
+document.addEventListener("change",e=>{
+  if(e.target.matches("[data-owned]")){
+    const n=e.target.dataset.owned;
+    e.target.checked?owned.add(n):owned.delete(n); saveOwned(); render();
+  } else if(e.target.matches("[data-choice]")){
+    choices[e.target.dataset.choice]=Number(e.target.value); render();
+  }
+});
+document.addEventListener("click",e=>{
+  const a=e.target.closest("[data-jump]"); if(a){e.preventDefault(); current=a.dataset.jump; $("#search").value=""; $("#rankFilter").value="all"; refreshSelect(); $("#target").value=current;}
+});
+$("#target").addEventListener("change",e=>{current=e.target.value;render();});
+$("#search").addEventListener("input",refreshSelect);
+$("#rankFilter").addEventListener("change",refreshSelect);
+$("#clearOwned").addEventListener("click",()=>{owned.clear();saveOwned();render();});
+refreshSelect();
+</script>
+</body>
+</html>
