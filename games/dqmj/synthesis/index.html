@@ -196,7 +196,7 @@ let current = "りゅうじんおう";
 
 function saveCounts(){localStorage.setItem("dqmj-owned-counts-v2",JSON.stringify(counts));}
 function savePrefs(){localStorage.setItem("dqmj-recipe-pref-v3",JSON.stringify(recipePref));}
-function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\\"":"&quot;","'":"&#39;"}[c]));}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
 function count(n){return Math.max(0,Math.floor(Number(counts[n])||0));}
 function setCount(n,v){counts[n]=Math.max(0,Math.floor(Number(v)||0));saveCounts();renderAll();}
 function isHigh(n){return !!HIGH[n];}
