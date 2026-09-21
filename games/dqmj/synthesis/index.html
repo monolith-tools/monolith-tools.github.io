@@ -83,7 +83,7 @@ input,select,button{font:inherit}input,select{min-height:42px;border:1px solid v
 </div>
 
 <script>
-const M = {
+const HIGH = {
 "メタルキング":{rank:"S",r:[["はぐれメタル","はぐれメタル","はぐれメタル","はぐれメタル"]]},
 "ブラックドラゴン":{rank:"S",r:[["グレイトドラゴン","しにがみきぞく"]]},
 "ヘラクレイザー":{rank:"S",r:[["かぶとこぞう","メタルキング"]]},
@@ -104,10 +104,11 @@ const M = {
 "シドー":{rank:"S",r:[["まおうのつかい","うごくせきぞう"],["まおうのつかい","バッファロン"]]},
 "ドルマゲス":{rank:"S",r:[["はくりゅうおう","デスピサロ"],["はくりゅうおう","エスターク"]]},
 "グランスライム":{rank:"S",r:[["キングスライム","メタルキング","バブルキング","メタルカイザー"]]},
-"カンダタ":{rank:"S",limited:"すれちがい通信で入手",r:[]},
-"キャプテン・クロウ":{rank:"S",limited:"海賊イベントで入手",r:[]},
+"カンダタ":{rank:"S",limited:"すれちがい通信で入手。配合不可",r:[]},
+"キャプテン・クロウ":{rank:"S",limited:"海賊イベントで入手。配合不可",r:[]},
+
 "ゾーマ":{rank:"SS",r:[["シドー","ワイトキング"],["シドー","デュラハーン"],["シドー","しにがみきぞく"]]},
-"あんこくのまじん":{rank:"SS",r:[["ゴールドマン","バベルボブル"]]},
+"あんこくのまじん":{rank:"SS",r:[["ゴールドマン","バベルボブル"],["うごくせきぞう","バベルボブル"]]},
 "デスピサロ":{rank:"SS",r:[["あんこくのまじん","ピサロナイト"]]},
 "エスターク":{rank:"SS",r:[["デスピサロ","ヘラクレイザー"]]},
 "デスタムーア":{rank:"SS",r:[["エスターク","ミルドラース"]]},
@@ -123,30 +124,90 @@ const M = {
 "レティス":{rank:"SS",limited:"DSステーション配布。配合不可",r:[]}
 };
 
-const highNames = Object.keys(M);
+const EXTRA = {
+"おおさそり":{rank:"F",specialOnly:true,r:[["ぐんたいガニ","しぜん系"]]},
+"ブリザード":{rank:"F",specialOnly:true,r:[["フレイム","スライムブレス"],["フレイム","シルバーデビル"]]},
+"エビルドライブ":{rank:"E",specialOnly:true,r:[["スカルゴン","がいこつ"],["スカルゴン","ぼうれいけんし"],["スカルゴン","スライムナイト"]]},
+"ひとくいばこ":{rank:"D",specialOnly:true,r:[["おどるほうせき","おどるほうせき"]]},
+"コサックシープ":{rank:"D",specialOnly:true,r:[["プークプック","リンリン"]]},
+"スカルゴン":{rank:"D",specialOnly:true,r:[["ドラゴン","ゾンビ系"],["バトルレックス","ゾンビ系"]]},
+"デザートデーモン":{rank:"D",specialOnly:true,r:[["ベビーサタン","びっくりサタン"]]},
+"さつじんいかり":{rank:"D",specialOnly:true,r:[["リンリン","あくま系"]]},
+"ブラウニー":{rank:"D",specialOnly:true,r:[["おおきづち","しぜん系"]]},
+"もりもりベス":{rank:"D",specialOnly:true,r:[["もりもりスライム","スライムベス"]]},
+"メタルスライム":{rank:"D",specialOnly:true,acquire:"位階配合不可。スカウト等で入手",r:[]},
+"もりもりスライム":{rank:"D",specialOnly:true,acquire:"位階配合不可。名もなき島などでスカウト",r:[]},
+
+"ガーゴイル":{rank:"C",specialOnly:true,r:[["レッサーデーモン","まじゅう系"]]},
+"おおドラキー":{rank:"C",specialOnly:true,acquire:"位階配合不可。名もなき島でスカウト",r:[]},
+"キラーパンサー":{rank:"C",specialOnly:true,r:[["ベビーパンサー","ベビーパンサー","ベビーパンサー","ベビーパンサー"]]},
+"キングスライム":{rank:"C",specialOnly:true,r:[["もりもりスライム","もりもりスライム"],["スライム","スライム","スライム","スライム"]]},
+"かいりゅう":{rank:"C",specialOnly:true,r:[["おおうつぼ","ギャオース"]]},
+"サイコロン":{rank:"C",specialOnly:true,r:[["おおめだま","おおめだま","おおめだま","おおめだま"]]},
+"メタルハンター":{rank:"C",specialOnly:true,r:[["メタルライダー","キラーアーマー"]]},
+"はぐれメタル":{rank:"C",specialOnly:true,r:[["メタルスライム","メタルスライム"]]},
+"はさみくわがた":{rank:"C",specialOnly:true,r:[["エビラ","おおさそり"]]},
+"メタルドラゴン":{rank:"C",specialOnly:true,r:[["メタルハンター","ダースドラゴン"],["メタルライダー","ダースドラゴン"]]},
+"ダースウルフェン":{rank:"C",specialOnly:true,acquire:"位階配合不可。スカウトで入手",r:[]},
+
+"アルゴングレート":{rank:"B",specialOnly:true,r:[["アルゴリザード","アルゴリザード","アルゴリザード","アルゴリザード"]]},
+"ソードファントム":{rank:"B",specialOnly:true,r:[["しりょうのきし","しりょうのきし"]]},
+"ボーンナイト":{rank:"B",specialOnly:true,r:[["エビルドライブ","さまようよろい"]]},
+"なぞのしんかん":{rank:"B",specialOnly:true,r:[["あくましんかん","パペットこぞう"]]},
+"リザードファッツ":{rank:"B",specialOnly:true,r:[["リザードキッズ","リザードキッズ","リザードキッズ","アルゴングレート"]]},
+"ボストロール":{rank:"B",specialOnly:true,r:[["バッファロン","サイコロン"],["ギガンテス","サイコロン"]]},
+
+"ワニバーン":{rank:"A",specialOnly:true,r:[["だいおうイカ","グラコス"]]},
+"アンクルホーン":{rank:"A",specialOnly:true,r:[["プークプック","バッファロン"],["コサックシープ","バッファロン"]]},
+"モヒカント":{rank:"A",specialOnly:true,r:[["バッファロン","キラーパンサー"],["バッファロン","しにがみきぞく"],["バッファロン","スライムファング"]]},
+"グラコス":{rank:"A",specialOnly:true,r:[["オクトセントリー","アークデーモン"],["マーマン","アークデーモン"]]},
+"メタルカイザー":{rank:"A",specialOnly:true,r:[["メタルスライム","メタルスライム","はぐれメタル","メタルライダー"]]},
+"オーシャンクロー":{rank:"A",specialOnly:true,r:[["かくとうパンサー","ワニバーン"]]},
+"ブル":{rank:"A",specialOnly:true,r:[["ボル","しぜん系"],["バル","しぜん系"],["ベル","しぜん系"]]},
+"バル":{rank:"A",specialOnly:true,r:[["ボル","ぶっしつ系"],["ブル","ぶっしつ系"],["ベル","ぶっしつ系"]]},
+"ピサロナイト":{rank:"A",specialOnly:true,r:[["キラーアーマー","しにがみきぞく"],["キラーアーマー","オーシャンクロー"]]},
+"ガルーダ":{rank:"A",specialOnly:true,r:[["ヘルコンドル","ジャミラス"]]},
+"ベル":{rank:"A",specialOnly:true,r:[["ボル","まじゅう系"],["バル","まじゅう系"],["ブル","まじゅう系"]]},
+"ベリアル":{rank:"A",specialOnly:true,r:[["デザートデーモン","アークデーモン"],["アークデーモン","グレイトドラゴン"],["アークデーモン","ゴールドマン"],["アークデーモン","アトラス"]]},
+"しにがみきぞく":{rank:"A",specialOnly:true,r:[["ボーンナイト","ダークナイト"],["ボーンナイト","モヒカント"]]},
+"メカバーン":{rank:"A",specialOnly:true,r:[["メタルドラゴン","グレイトドラゴン"]]},
+"バズズ":{rank:"A",specialOnly:true,r:[["シルバーデビル","ギガンテス"],["シルバーデビル","ゴーレム"],["シルバーデビル","だいおうイカ"],["シルバーデビル","ジャミラス"]]}
+};
+
+const D = {...HIGH,...EXTRA};
+const highNames = Object.keys(HIGH);
+const allTracked = Object.keys(D);
 const $ = s => document.querySelector(s);
+
 const oldOwned = JSON.parse(localStorage.getItem("dqmj-owned-v1") || "[]");
 let counts = JSON.parse(localStorage.getItem("dqmj-owned-counts-v2") || "null");
 if(!counts){
   counts={};
   highNames.forEach(n=>counts[n]=oldOwned.includes(n)?1:0);
-  localStorage.setItem("dqmj-owned-counts-v2",JSON.stringify(counts));
 }
-highNames.forEach(n=>{ if(counts[n]===undefined) counts[n]=0; });
-let choices = {};
+allTracked.forEach(n=>{if(counts[n]===undefined)counts[n]=0;});
+let recipePref = JSON.parse(localStorage.getItem("dqmj-recipe-pref-v3") || "{}");
 let current = "りゅうじんおう";
 
-function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));}
+function saveCounts(){localStorage.setItem("dqmj-owned-counts-v2",JSON.stringify(counts));}
+function savePrefs(){localStorage.setItem("dqmj-recipe-pref-v3",JSON.stringify(recipePref));}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\\"":"&quot;","'":"&#39;"}[c]));}
 function count(n){return Math.max(0,Math.floor(Number(counts[n])||0));}
-function setCount(n,v){counts[n]=Math.max(0,Math.floor(Number(v)||0));localStorage.setItem("dqmj-owned-counts-v2",JSON.stringify(counts));renderAll();}
-function rankBadge(n){return M[n]?'<span class="badge">'+M[n].rank+'</span>':"";}
-function surplus(n){return M[n]?Math.max(0,count(n)-1):0;}
-function nodeKey(path){return path.join(">");}
-function choiceFor(name,path){const m=M[name];if(!m||!m.r.length)return 0;const k=nodeKey(path);return Math.min(choices[k]||0,m.r.length-1);}
+function setCount(n,v){counts[n]=Math.max(0,Math.floor(Number(v)||0));saveCounts();renderAll();}
+function isHigh(n){return !!HIGH[n];}
+function reserve(n){return isHigh(n)?1:0;}
+function usable(n){return Math.max(0,count(n)-reserve(n));}
+function rankBadge(n){return D[n]?'<span class="badge">'+D[n].rank+'</span>':"";}
+function choiceFor(name){
+  const m=D[name];if(!m||!m.r.length)return 0;
+  return Math.min(Math.max(0,Number(recipePref[name])||0),m.r.length-1);
+}
+function recipeFor(name){const m=D[name];return m&&m.r.length?m.r[choiceFor(name)]:null;}
+function setRecipe(name,i){recipePref[name]=Number(i)||0;savePrefs();renderAll();}
 
 function filteredNames(){
   const q=$("#search").value.trim(),rf=$("#rankFilter").value;
-  return highNames.filter(n=>(rf==="all"||M[n].rank===rf)&&(!q||n.includes(q)));
+  return highNames.filter(n=>(rf==="all"||HIGH[n].rank===rf)&&(!q||n.includes(q)));
 }
 function refreshSelect(){
   const names=filteredNames(),t=$("#target");
@@ -156,93 +217,168 @@ function refreshSelect(){
   renderSearch();
 }
 
-function renderNode(name,path,seen,isRoot){
-  const m=M[name],c=count(name),sp=surplus(name),cycle=seen.has(name);
+function renderNode(name,seen,isRoot){
+  const m=D[name],c=count(name),u=usable(name),cycle=seen.has(name);
   let html='<li class="node"><div class="nodebox"><div class="nodehead"><span class="name">'+esc(name)+'</span>'+rankBadge(name);
-  if(m?.limited)html+='<span class="badge limited">限定</span>';
+  if(m?.limited||m?.acquire)html+='<span class="badge limited">入手限定</span>';
+  else if(m?.specialOnly)html+='<span class="badge limited">特殊配合</span>';
   if(m&&c>0)html+='<span class="badge owned">所持 '+c+'</span>';
   if(m)html+='<label class="count-inline">所持数 <input type="number" min="0" step="1" value="'+c+'" data-count="'+esc(name)+'"></label>';
   html+='</div>';
-  if(m?.limited)html+='<div class="node-meta">'+esc(m.limited)+'</div>';
-  if(!m){html+='<div class="node-meta">末端素材</div></div></li>';return html;}
-  if(!isRoot&&sp>0){html+='<div class="node-meta">余剰 '+sp+'体あり。1体を保存したまま素材に使えます。</div></div></li>';return html;}
-  if(!isRoot&&c===1)html+='<div class="node-meta"><span class="missing">保存分1体のみ。素材に使うなら追加作成が必要です。</span></div>';
-  if(cycle){html+='<div class="node-meta">循環参照を停止しました。</div></div></li>';return html;}
-  if(!m.r.length){html+='<div class="node-meta">配合ルートなし</div></div></li>';return html;}
-  const idx=choiceFor(name,path),parents=m.r[idx],k=nodeKey(path);
+
+  if(!m){
+    html+='<div class="node-meta">位階配合・スカウトなどで用意する末端素材</div></div></li>';
+    return html;
+  }
+  if(m.limited)html+='<div class="node-meta">'+esc(m.limited)+'</div>';
+  if(m.acquire)html+='<div class="node-meta">'+esc(m.acquire)+'</div>';
+
+  if(!isRoot&&u>0){
+    html+='<div class="node-meta">素材に使える手持ち '+u+'体あり。'+(isHigh(name)?'保存分1体は残します。':'')+'</div></div></li>';
+    return html;
+  }
+  if(!isRoot&&isHigh(name)&&c===1)html+='<div class="node-meta"><span class="missing">保存分1体のみ。素材用に追加作成が必要です。</span></div>';
+  if(cycle){html+='<div class="node-meta">循環する配合候補のため、ここで展開を停止しました。</div></div></li>';return html;}
+  if(!m.r.length){html+='<div class="node-meta">配合では作れません。入手が必要です。</div></div></li>';return html;}
+
+  const idx=choiceFor(name),parents=m.r[idx];
   html+='<div class="parents">'+(parents.length===4?'4体配合：':'配合：')+parents.map(esc).join(' × ')+'</div>';
   if(m.r.length>1){
-    html+='<select class="routepick" data-choice="'+esc(k)+'">';
+    html+='<select class="routepick" data-recipe="'+esc(name)+'">';
     m.r.forEach((r,i)=>{html+='<option value="'+i+'" '+(i===idx?'selected':'')+'>候補 '+(i+1)+'：'+r.map(esc).join(' × ')+'</option>';});
     html+='</select>';
   }
   html+='</div>';
   const ns=new Set(seen);ns.add(name);
-  html+='<ul>'+parents.map((p,i)=>renderNode(p,path.concat(i+":"+p),ns,false)).join("")+'</ul></li>';
+  html+='<ul>'+parents.map(p=>renderNode(p,ns,false)).join("")+'</ul></li>';
   return html;
 }
 
-function planAdditional(root){
-  const pool={};highNames.forEach(n=>pool[n]=surplus(n));
-  const missing={};
-  function need(name,qty,path,seen,isRoot){
-    let q=qty;
-    if(!isRoot&&M[name]){
-      const use=Math.min(pool[name]||0,q);
-      pool[name]-=use;q-=use;
+function makePlanner(initialCounts){
+  const inv={};
+  allTracked.forEach(n=>inv[n]=Math.max(0,Math.floor(Number(initialCounts[n])||0)));
+  const terminals={},acquisitions={},productions={},warnings=[];
+  let ops=0;
+  function add(map,n,q){if(q>0)map[n]=(map[n]||0)+q;}
+  function produce(name,qty,stack){
+    if(qty<=0)return;
+    const m=D[name];
+    if(stack.has(name)){
+      add(terminals,name,qty);
+      warnings.push(name+"で配合ルートが循環したため末端扱いしました");
+      inv[name]=(inv[name]||0)+qty;
+      return;
     }
-    if(q<=0)return;
-    const m=M[name];
-    if(!m||!m.r.length||seen.has(name)){
-      missing[name]=(missing[name]||0)+q;return;
+    if(!m){
+      add(terminals,name,qty);
+      inv[name]=(inv[name]||0)+qty;
+      return;
     }
-    const idx=choiceFor(name,path),parents=m.r[idx],ns=new Set(seen);ns.add(name);
+    if(!m.r.length){
+      add(acquisitions,name,qty);
+      inv[name]=(inv[name]||0)+qty;
+      return;
+    }
+    const parents=recipeFor(name);
+    add(productions,name,qty);
+    ops += qty*(parents.length===4?3:1);
+    const ns=new Set(stack);ns.add(name);
     const mult={};parents.forEach(p=>mult[p]=(mult[p]||0)+1);
-    Object.entries(mult).forEach(([p,k])=>need(p,q*k,path.concat(p),ns,false));
+    for(const [p,k] of Object.entries(mult))consume(p,qty*k,ns);
+    inv[name]=(inv[name]||0)+qty;
   }
-  need(root,1,[root],new Set(),true);
-  return missing;
+  function consume(name,qty,stack){
+    const keep=isHigh(name)?1:0;
+    const have=inv[name]||0;
+    const short=Math.max(0,qty+keep-have);
+    if(short>0)produce(name,short,stack);
+    inv[name]=(inv[name]||0)-qty;
+  }
+  function ensureHigh(name){
+    const short=Math.max(0,1-(inv[name]||0));
+    if(short>0)produce(name,short,new Set());
+  }
+  return {inv,terminals,acquisitions,productions,warnings,get ops(){return ops;},produce,consume,ensureHigh};
 }
 
+function planAdditional(root){
+  const p=makePlanner(counts);
+  p.produce(root,1,new Set());
+  return p;
+}
+function planAll(){
+  const p=makePlanner(counts);
+  highNames.forEach(n=>p.ensureHigh(n));
+  return p;
+}
 function reverse(name){
   const hits=[];
-  for(const [child,m] of Object.entries(M))m.r.forEach(r=>{if(r.includes(name)&&!hits.includes(child))hits.push(child);});
+  for(const [child,m] of Object.entries(D))m.r.forEach(r=>{if(r.includes(name)&&!hits.includes(child))hits.push(child);});
   return hits;
 }
 
 function renderSearch(){
   if(!current){$("#tree").innerHTML="";$("#targetLine").innerHTML='<span class="empty">該当なし</span>';return;}
-  const m=M[current],c=count(current);
+  const m=HIGH[current],c=count(current);
   $("#targetLine").innerHTML='<strong style="font-size:18px">'+esc(current)+'</strong>'+rankBadge(current)+(m.limited?'<span class="badge limited">限定・配合不可</span>':'<span class="badge">配合可</span>')+(c>0?'<span class="badge owned">現在 '+c+'体</span>':'<span class="badge short">未所持</span>');
-  $("#tree").innerHTML=renderNode(current,[current],new Set(),true);
-  const out=planAdditional(current);
-  const items=Object.entries(out).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0],"ja"));
-  $("#summary").innerHTML=items.length?'<ul class="summary-list">'+items.map(([n,cnt])=>'<li>'+esc(n)+(cnt>1?' × '+cnt:'')+(M[n]?.limited?' <span class="badge limited">限定入手が必要</span>':'')+'</li>').join("")+'</ul>':'<div class="empty">現在の余剰分だけで追加1体を作れます。</div>';
-  const rev=reverse(current);
-  $("#reverse").innerHTML=rev.length?rev.map(n=>'<a href="#" data-jump="'+esc(n)+'">'+esc(n)+' '+M[n].rank+'</a>').join(""):'<div class="empty">S・SS配合表内では使用先なし</div>';
+  $("#tree").innerHTML=renderNode(current,new Set(),true);
+  const p=planAdditional(current);
+  const term=Object.entries(p.terminals).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0],"ja"));
+  const acq=Object.entries(p.acquisitions).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0],"ja"));
+  let s='<div class="node-meta" style="margin-bottom:8px">推定特殊配合回数：<strong>'+p.ops+'</strong>回</div>';
+  if(acq.length)s+='<div class="node-meta"><strong>配合外で入手：</strong></div><ul class="summary-list">'+acq.map(([n,q])=>'<li>'+esc(n)+(q>1?' × '+q:'')+'</li>').join("")+'</ul>';
+  if(term.length)s+='<div class="node-meta" style="margin-top:8px"><strong>位階配合・スカウト等で用意：</strong></div><ul class="summary-list">'+term.map(([n,q])=>'<li>'+esc(n)+(q>1?' × '+q:'')+'</li>').join("")+'</ul>';
+  if(!term.length&&!acq.length)s+='<div class="empty">現在の手持ちだけで追加1体を作れます。</div>';
+  $("#summary").innerHTML=s;
+  const rev=reverse(current).filter(n=>isHigh(n));
+  $("#reverse").innerHTML=rev.length?rev.map(n=>'<a href="#" data-jump="'+esc(n)+'">'+esc(n)+' '+HIGH[n].rank+'</a>').join(""):'<div class="empty">S・SS配合表内では使用先なし</div>';
 }
 
 function progress(rank){
-  const arr=rank?highNames.filter(n=>M[n].rank===rank):highNames;
+  const arr=rank?highNames.filter(n=>HIGH[n].rank===rank):highNames;
   const done=arr.filter(n=>count(n)>0).length;
   return {done,total:arr.length,pct:arr.length?Math.round(done/arr.length*100):0};
 }
 function statCard(label,p){
   return '<div class="stat"><div class="label">'+label+'</div><div class="value">'+p.done+' / '+p.total+'</div><div class="small">'+p.pct+'%</div><div class="bar"><span style="width:'+p.pct+'%"></span></div></div>';
 }
+function listMap(title,map){
+  const items=Object.entries(map).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0],"ja"));
+  if(!items.length)return "";
+  return '<h3>'+title+'</h3><ul class="summary-list">'+items.map(([n,q])=>'<li>'+esc(n)+(D[n]?(' '+rankBadge(n)):'')+(q>1?' × '+q:'')+'</li>').join("")+'</ul>';
+}
+function renderGlobalPlan(){
+  const p=planAll();
+  const miss=highNames.filter(n=>count(n)===0);
+  if(!miss.length){
+    $("#globalPlan").innerHTML='<div class="badge owned">S・SS全37種を1体以上所持しています</div>';
+    return;
+  }
+  const prodHigh=Object.fromEntries(Object.entries(p.productions).filter(([n])=>isHigh(n)));
+  const prodLow=Object.fromEntries(Object.entries(p.productions).filter(([n])=>!isHigh(n)));
+  let h='<div class="targetline"><span class="badge short">未所持 '+miss.length+'種</span><span class="badge">追加特殊配合 約'+p.ops+'回</span></div>';
+  h+='<div class="node-meta">現在の所持数から、最終的に全S・SSを各1体残す計画です。4体配合は中間2体の作成を含め3回として数えます。</div>';
+  h+=listMap("S・SSで追加作成する個体",prodHigh);
+  h+=listMap("A以下で途中作成する特殊配合",prodLow);
+  h+=listMap("配合外で入手が必要",p.acquisitions);
+  h+=listMap("位階配合・スカウト等で用意する末端素材",p.terminals);
+  if(p.warnings.length)h+='<h3>注意</h3><ul class="summary-list">'+[...new Set(p.warnings)].map(x=>'<li>'+esc(x)+'</li>').join("")+'</ul>';
+  $("#globalPlan").innerHTML=h;
+}
 function renderComp(){
   const all=progress(),s=progress("S"),ss=progress("SS");
   $("#stats").innerHTML=statCard("総合",all)+statCard("Sランク",s)+statCard("SSランク",ss);
+  renderGlobalPlan();
   const q=$("#compSearch").value.trim(),missingOnly=$("#missingOnly").checked;
   let html="";
   ["S","SS"].forEach(rank=>{
-    const names=highNames.filter(n=>M[n].rank===rank&&(!q||n.includes(q))&&(!missingOnly||count(n)===0));
+    const names=highNames.filter(n=>HIGH[n].rank===rank&&(!q||n.includes(q))&&(!missingOnly||count(n)===0));
     const p=progress(rank);
     html+='<div class="rankhead"><h2>'+rank+'ランク</h2><span class="badge">'+p.done+' / '+p.total+'</span></div>';
     if(!names.length){html+='<div class="empty">該当なし</div>';return;}
     html+='<div class="monster-list">';
     names.forEach(n=>{
-      const m=M[n],c=count(n),done=c>0;
+      const m=HIGH[n],c=count(n),done=c>0;
       html+='<div class="monster-row"><div class="monster-main"><div class="monster-name">'+esc(n)+' '+rankBadge(n)+(m.limited?' <span class="badge limited">限定</span>':'')+'</div><div class="monster-sub '+(done?'done':'missing')+'">'+(done?'コンプ済み。現在 '+c+'体':'未所持。目標まであと1体')+'</div></div><div class="countbox"><span>所持</span><input type="number" min="0" step="1" value="'+c+'" data-count="'+esc(n)+'"></div>';
       if(m.r.length)html+='<button class="makebtn" type="button" data-make="'+esc(n)+'">'+(done?'配合を見る':'作り方を見る')+'</button>';
       else html+='<button class="makebtn" type="button" disabled>配合不可</button>';
@@ -253,7 +389,6 @@ function renderComp(){
   $("#compLists").innerHTML=html;
 }
 function renderAll(){renderSearch();renderComp();}
-
 function showTab(which){
   const search=which==="search";
   $("#searchView").classList.toggle("hidden",!search);
@@ -269,7 +404,7 @@ function jumpToSearch(n){
 
 document.addEventListener("change",e=>{
   if(e.target.matches("[data-count]"))setCount(e.target.dataset.count,e.target.value);
-  else if(e.target.matches("[data-choice]")){choices[e.target.dataset.choice]=Number(e.target.value);renderSearch();}
+  else if(e.target.matches("[data-recipe]"))setRecipe(e.target.dataset.recipe,e.target.value);
 });
 document.addEventListener("click",e=>{
   const jump=e.target.closest("[data-jump]");if(jump){e.preventDefault();jumpToSearch(jump.dataset.jump);return;}
@@ -280,9 +415,10 @@ $("#search").addEventListener("input",refreshSelect);
 $("#rankFilter").addEventListener("change",refreshSelect);
 $("#compSearch").addEventListener("input",renderComp);
 $("#missingOnly").addEventListener("change",renderComp);
-$("#clearCounts").addEventListener("click",()=>{if(confirm("S・SSの所持数をすべて0にしますか？")){highNames.forEach(n=>counts[n]=0);localStorage.setItem("dqmj-owned-counts-v2",JSON.stringify(counts));renderAll();}});
+$("#clearCounts").addEventListener("click",()=>{if(confirm("S・SSの所持数をすべて0にしますか？")){highNames.forEach(n=>counts[n]=0);saveCounts();renderAll();}});
 $("#tabSearch").addEventListener("click",()=>showTab("search"));
 $("#tabComp").addEventListener("click",()=>showTab("comp"));
+saveCounts();
 refreshSelect();
 renderComp();
 </script>
