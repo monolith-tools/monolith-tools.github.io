@@ -62,6 +62,11 @@ input,select,button{font:inherit}input,select{min-height:42px;border:1px solid v
 
   <section id="compView" class="hidden">
     <div class="stats" id="stats"></div>
+    <div class="panel" style="margin-bottom:16px">
+      <div class="rankhead" style="margin-top:0"><h2>全37種一括計画</h2><span class="badge">1体ずつ保存</span></div>
+      <div class="comp-note">現在の所持数を使い、S・SSを最終的に各1体残すための追加作成を再帰計算します。A以下は、位階配合できない特殊配合だけ自動展開します。</div>
+      <div id="globalPlan"></div>
+    </div>
     <div class="panel">
       <div class="comp-toolbar">
         <input type="search" id="compSearch" placeholder="コンプ表を検索">
