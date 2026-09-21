@@ -22,6 +22,26 @@ input,select,button{font:inherit}input,select{min-height:42px;border:1px solid v
 .rankhead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:18px 0 8px}.rankhead h2{margin:0}.monster-list{display:grid;gap:7px}.monster-row{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:10px;align-items:center;border:1px solid var(--line);background:var(--card);border-radius:11px;padding:9px 10px}.monster-main{min-width:0}.monster-name{font-weight:700}.monster-sub{font-size:12px;color:var(--muted);margin-top:2px}.countbox{display:flex;align-items:center;gap:5px}.countbox input{width:64px;min-height:36px;padding:4px 7px}.makebtn{white-space:nowrap}.done{color:var(--owned)}.missing{color:var(--danger)}
 .comp-note{font-size:12px;color:var(--muted);margin:8px 0 14px}.footer{font-size:12px;color:var(--muted);margin:18px 2px}.footer a{color:inherit}
 .hidden{display:none!important}
+
+/* Notion embed mode: ?embed=1 */
+body.embed{background:transparent}
+body.embed .wrap{max-width:none;padding:10px 12px}
+body.embed .top{display:none}
+body.embed .tabs{margin:2px 0 10px;gap:6px}
+body.embed .tabbtn{padding:7px 12px;min-height:34px}
+body.embed .controls{grid-template-columns:minmax(0,1fr) 110px minmax(150px,.8fr);gap:8px;margin-bottom:10px}
+body.embed .grid{grid-template-columns:1fr;gap:10px}
+body.embed .panel{padding:12px;border-radius:11px}
+body.embed .hint{margin-bottom:9px;padding:7px 9px}
+body.embed .footer{display:none}
+body.embed .stats{gap:8px;margin-bottom:10px}
+body.embed .stat{padding:10px}
+body.embed .stat .value{font-size:20px}
+body.embed .monster-row{padding:8px}
+body.embed .rankhead{margin-top:12px}
+body.embed .comp-note{margin:6px 0 10px}
+body.embed .tree ul{margin-left:11px;padding-left:10px}
+
 @media(max-width:760px){.controls{grid-template-columns:1fr 1fr}.controls .search{grid-column:1/-1}.grid{grid-template-columns:1fr}.wrap{padding:14px}.panel{padding:13px}.stats{grid-template-columns:1fr}.monster-row{grid-template-columns:minmax(0,1fr) auto}.monster-row .makebtn{grid-column:1/-1;width:100%}}
 </style>
 </head>
@@ -88,6 +108,9 @@ input,select,button{font:inherit}input,select{min-height:42px;border:1px solid v
 </div>
 
 <script>
+if(new URLSearchParams(location.search).get("embed")==="1"){
+  document.body.classList.add("embed");
+}
 const HIGH = {
 "メタルキング":{rank:"S",r:[["はぐれメタル","はぐれメタル","はぐれメタル","はぐれメタル"]]},
 "ブラックドラゴン":{rank:"S",r:[["グレイトドラゴン","しにがみきぞく"]]},
